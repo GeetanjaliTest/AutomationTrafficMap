@@ -1,0 +1,108 @@
+# References:
+#   http://vcs.atspace.co.uk/2012/09/15/eols-in-git-and-svn/
+
+# The following line will get GIT to try and identify if it is a
+# binary file or a text file. It does so by reading the first 8KB
+# of data and if it finds a null character, it assumes binary.
+# Note: we can reasonably assume that letting GIT decide what to do
+# with a given file extension might make "git checkout" slower
+# (since each file must be opened) thus it is preferable to specify
+# 'text' or unset it altogether if we know what type of file we're
+# dealing with.
+* text=auto !eol
+
+# The following will declare a few well-known types of file to be
+# treated as text by GIT. What this will do is put them on disk
+# with CR-LF on Windows, or just LF on Linux.
+*.java       text
+*.md         text
+*.pl         text eol=lf
+*.pom        text
+*.properties text
+*.py         text eol=lf
+*.txt        text
+*.xml        text
+*.xsl        text
+
+# The following are file extensions of binary files that are
+# typically quite large and thus that we would want to store in LFS.
+[attr]lfsbinary filter=lfs diff=lfs merge=lfs -text
+s
+*.7[zZ]		lfsbinary
+*.7[zZ][iI][pP]	lfsbinary
+*.[aA]  	lfsbinary
+*.[bB][iI][nN]  lfsbinary
+*.[bB][mM][pP]  lfsbinary
+*.[cC][aA][bB]  lfsbinary
+*.[cC][hH][mM]  lfsbinary
+*.[dD][aA][tT]  lfsbinary
+*.[dD][bB]	lfsbinary
+*.[dD][iI][tT][aA] lfsbinary
+*.[dD][lL][lL]	lfsbinary
+*.[dD][mM][gG]	lfsbinary
+*.[dD][oO][cC]	lfsbinary
+*.[dD][yY][lL][iI][bB] lfsbinary
+*.[eE][aA][rR]	lfsbinary
+*.[eE][pP][sS]	lfsbinary
+*.[eE][xX][eE]	lfsbinary
+*.[fF][lL][aA]	lfsbinary
+*.[fF][mM]	lfsbinary
+*.[gG][iI][fF]	lfsbinary
+*.[gG][mM]	lfsbinary
+*.[gG][zZ]	lfsbinary
+*.[hH][eE][xX]	lfsbinary
+*.[iI][cC][oO]	lfsbinary
+*.[iI][dD][lL]	lfsbinary
+*.[jJ][aA][rR]	lfsbinary
+*.[jJ][aA][sS]	lfsbinary
+*.[jJ][nN][iI][lL][iI][bB] lfsbinary
+*.[jJ][pP][gG]	lfsbinary
+*.[jJ][sS][aA]	lfsbinary
+*.[lL][iI][bB]	lfsbinary
+*.[mM][iI][fF]	lfsbinary
+*.[mM][pP]3	lfsbinary
+*.[mM][pP][gG]	lfsbinary
+*.[mM][pP][pP]	lfsbinary
+*.[mM][sS][iI]	lfsbinary
+*.[mM][sS][mM]	lfsbinary
+*.[nN][sS][pP]	lfsbinary
+*.[oO][cC][xX]	lfsbinary
+*.[oO][tT][fF]	lfsbinary
+*.[pP][dD][bB]	lfsbinary
+*.[pP][dD][fF]	lfsbinary
+*.[pP][nN][gG]	lfsbinary
+*.[pP][pP][tT]	lfsbinary
+*.[pP][sS]	lfsbinary
+*.[pP][sS][dD]	lfsbinary
+*.[rR][aA][rR]	lfsbinary
+*.[rR][dD][bB]	lfsbinary
+*.[rR][eE][sS][xX] lfsbinary
+*.[rR][pP][mM]	lfsbinary
+*.[rR][tT][fF]	lfsbinary
+*.[sS][aA][rR]	lfsbinary
+*.[sS][lL]	lfsbinary
+*.[sS][oO]	lfsbinary
+*.[sS][oO].?	lfsbinary
+*.[sS][wW][cC]	lfsbinary
+*.[sS][wW][fF]	lfsbinary
+*.[sS][yY][mM]	lfsbinary
+*.[tT][gG][zZ]	lfsbinary
+*.[tT][tT][fF]	lfsbinary
+*.[tT][zZ]	lfsbinary
+*.[vV][dD][pP][rR][oO][jJ] lfsbinary
+*.[vV][mM]	lfsbinary
+*.[vV][sS][dD]	lfsbinary
+*.[wW][aA][rR]	lfsbinary
+*.[wW][mM][fF]	lfsbinary
+*.[xX][aA][rR]	lfsbinary
+*.[xX][lL][sS]	lfsbinary
+*.[zZ][iI][pP]	lfsbinary
+
+[attr]batchfile text eol=crlf
+*.[Bb][Aa][Tt]	batchfile
+*.[Bb][Tt][Mm]	batchfile
+*.[Cc][Mm][Dd]	batchfile
+
+[attr]shellscript text eol=lf
+*.sh		shellscript
+ant		shellscript
